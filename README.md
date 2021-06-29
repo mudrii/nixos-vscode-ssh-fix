@@ -62,8 +62,7 @@ Experimental support for VS Code Server in NixOS. The NodeJS by default supplied
 
 ### Usage
 
-This service only works if the VSCode server has yet to be installed. If the
-server has already been installed, remove `~/.vscode-server`, restart the
-service, and then try to connect to the VSCode server from another client again.
-The service can be restarted with
-`systemctl --user restart auto-fix-vscode-server` or by rebooting the machine.
+This service only works if the VSCode server has yet to be installed. If the server has already been installed, remove `~/.vscode-server`, restart the
+service, and then try to connect to the VSCode server from another client again. 
+
+The service can be restarted with `systemctl --user restart nixos-vscode-server` or by rebooting the machine.
