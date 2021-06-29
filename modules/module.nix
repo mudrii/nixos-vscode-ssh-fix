@@ -4,7 +4,7 @@ moduleConfig:
 with lib;
 
 {
-  options.services.auto-fix-vscode-server = with types;{
+  options.services.nixos-vscode-server = with types;{
     enable = mkEnableOption "auto-fix service for vscode-server in NixOS";
     nodePackage = mkOption {
       type = package;
@@ -14,7 +14,7 @@ with lib;
 
   config =
     let
-      cfg = config.services.auto-fix-vscode-server;
+      cfg = config.services.nixos-vscode-server;
       nodePath = "${cfg.nodePackage}/bin/node";
       mkStartScript = name: pkgs.writeShellScript "${name}.sh" ''
         set -euo pipefail
@@ -41,7 +41,7 @@ with lib;
     in
       mkIf cfg.enable (
         moduleConfig rec {
-          name = "auto-fix-vscode-server";
+          name = "nixos-vscode-server";
           description = "Automatically fix the VS Code server used by the remote SSH extension";
           serviceConfig = {
             # When a monitored directory is deleted, it will stop being monitored.
