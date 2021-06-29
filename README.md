@@ -21,7 +21,7 @@ Experimental support for VS Code Server in NixOS. The NodeJS by default supplied
           ./configuration.nix
           {
             imports = [ inputs.auto-fix-vscode-server.nixosModules.system ];
-            services.nixos-vscode-server.enable = true;
+            #services.nixos-vscode-server.enable = true;
           }
         ];
       };
