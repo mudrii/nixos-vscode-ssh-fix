@@ -40,8 +40,8 @@ with lib;
       '';
     in
       mkIf cfg.enable (
-        moduleConfig rec {
-          name = "nixos-vscode-server";
+        moduleConfig rec.nixos-vscode-server =  {
+          #name = "nixos-vscode-server";
           description = ["Automatically fix the VS Code server used by the remote SSH extension"];
           serviceConfig = {
             # When a monitored directory is deleted, it will stop being monitored.
@@ -52,6 +52,6 @@ with lib;
             RestartSec = 0;
             ExecStart = "${mkStartScript name}";
           };
-        }
+        };
       );
 }
