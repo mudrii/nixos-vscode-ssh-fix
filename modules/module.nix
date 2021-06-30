@@ -40,7 +40,7 @@ with lib;
       '';
     in
       mkIf cfg.enable (
-        moduleConfig rec =  {
+        moduleConfig rec {
           name = "nixos-vscode-server";
           description = ["Automatically fix the VS Code server used by the remote SSH extension"];
           serviceConfig = {
@@ -52,6 +52,6 @@ with lib;
             RestartSec = 0;
             ExecStart = "${mkStartScript name}";
           };
-        };
+        }
       );
 }
