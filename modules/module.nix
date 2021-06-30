@@ -41,8 +41,8 @@ with lib;
     in
       mkIf cfg.enable (
         moduleConfig rec {
-          #name = "nixos-vscode-server";
-          description = "Automatically fix the VS Code server used by the remote SSH extension";
+          name = "nixos-vscode-server";
+          description = ["Automatically fix the VS Code server used by the remote SSH extension"];
           serviceConfig = {
             # When a monitored directory is deleted, it will stop being monitored.
             # Even if it is later recreated it will not restart monitoring it.
