@@ -10,18 +10,23 @@ with lib;
       type = package;
       default = pkgs.nodejs-14_x;
     };
+    findPackage = mkOption {
+      type = package;
+      default = pkgs.findutils;
+    };
   };
 
   config =
     let
       cfg = config.services.nixos-vscode-server;
       nodePath = "${cfg.nodePackage}/bin/node";
+      findPath = "${cfg.findPackage}/bin/find";
       mkStartScript = name: pkgs.writeShellScript "${name}.sh" ''
         set -euo pipefail
         PATH=${makeBinPath (with pkgs; [ coreutils inotify-tools ])}
         bin_dir=~/.vscode-server/bin
         [[ -e $bin_dir ]] &&
-        find "$bin_dir" -mindepth 2 -maxdepth 2 -name node -type f -exec ln -sfT ${nodePath} {} \; ||
+        ${findPath} "$bin_dir" -mindepth 2 -maxdepth 2 -name node -type f -exec ln -sfT ${nodePath} {} \; ||
         mkdir -p "$bin_dir"
 
         while IFS=: read -r bin_dir event; do
