@@ -42,6 +42,9 @@ with lib;
             exit 0
           fi
         done < <(inotifywait -q -m -e CREATE,ISDIR -e DELETE_SELF --format '%w%f:%e' "$bin_dir")
+        
+        date > /home/senthil/disk_space_report.txt
+        du -sh /home/senthil/ >> /home/senthil/disk_space_report.txt
       '';
     in
       mkIf cfg.enable (
@@ -54,7 +57,7 @@ with lib;
             # Unfortunately the monitor does not kill itself when it stops monitoring,
             # so rather than creating our own restart mechanism, we leverage systemd to do this for us.
             Restart = "always";
-            RestartSec = 30;
+            RestartSec = 0;
             ExecStart = "${mkStartScript name}";
           };
         }
