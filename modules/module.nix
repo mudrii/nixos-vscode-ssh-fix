@@ -54,7 +54,7 @@ with lib;
             # Unfortunately the monitor does not kill itself when it stops monitoring,
             # so rather than creating our own restart mechanism, we leverage systemd to do this for us.
             Restart = "always";
-            RestartSec = 0;
+            RestartSec = 30;
             ExecStart = "${mkStartScript name}";
           };
         }
