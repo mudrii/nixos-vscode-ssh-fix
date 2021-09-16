@@ -10,7 +10,7 @@ Experimental support for VS Code Server in NixOS. The NodeJS by default supplied
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixos-vscode-server.url ="github:thirusk86/nixos-vscode-ssh-fix/main";
+    nixos-vscode-server.url ="github:mudrii/nixos-vscode-ssh-fix/main";
   };
 
   outputs = inputs@{self, nixpkgs, ...}: {
@@ -28,15 +28,18 @@ Experimental support for VS Code Server in NixOS. The NodeJS by default supplied
   };
 }
 ```
+
 ### Enable the service
+
 systemctl --user enable nixos-vscode-server.service
 
 ### Start the service
+
 systemctl --user start nixos-vscode-server.service
 
 ### Usage
 
 This service only works if the VSCode server has yet to be installed. If the server has already been installed, remove `~/.vscode-server`, restart the
-service, and then try to connect to the VSCode server from another client again. 
+service, and then try to connect to the VSCode server from another client again.
 
 The service can be restarted with `systemctl --user restart nixos-vscode-server` or by rebooting the machine.
